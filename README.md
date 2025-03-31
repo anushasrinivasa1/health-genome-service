@@ -1,5 +1,8 @@
 # Cloud Design and Deployment for Health Genome Result Service
 
+LINK TO ARCHITECTURE DIAGRAM: 
+https://lucid.app/lucidspark/bafb585e-9974-4436-8608-89fcb9ffac52/edit?viewport_loc=-3088%2C-940%2C5657%2C2939%2C0_0&invitationId=inv_ffe514a8-56f2-4b62-ae35-ce8a074172c8
+
 ## Overview
 This project sets up a secure, scalable, and automated cloud-based infrastructure using AWS, Kubernetes, and Terraform.
 
@@ -20,3 +23,5 @@ terraform apply -auto-approve
 
 CI/CD Pipeline
 GitHub Actions automates deployments to AWS.
+
+
