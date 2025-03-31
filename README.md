@@ -42,12 +42,12 @@ GitHub Actions automates deployments to AWS.
    kubectl rollout undo deployment genome-service
    cd terraform
 
-Open Terminal and Deploy Terraform
+## Open Terminal and Deploy Terraform
   terraform init
   terraform plan
   terraform apply -auto-approve
 
-Deploy Microservices to Kubernetes
+## Deploy Microservices to Kubernetes
   aws eks update-kubeconfig --name genome-cluster --region us-east-1
   kubectl apply -f k8s/deployment.yaml
   kubectl apply -f k8s/service.yaml
