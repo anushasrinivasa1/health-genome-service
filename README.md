@@ -24,4 +24,22 @@ terraform apply -auto-approve
 CI/CD Pipeline
 GitHub Actions automates deployments to AWS.
 
+## Security Measures
+- **IAM Roles & Policies**: Each service has least-privilege access.
+- **Database Encryption**: AWS RDS uses encryption at rest.
+- **Secrets Management**: AWS Secrets Manager stores database credentials.
+- **VPC Security**: Services are deployed in private subnets.
+
+## Logging & Monitoring
+- **AWS CloudWatch**: Monitors logs from Kubernetes and Lambda.
+- **Prometheus & Grafana**: Collects EKS metrics.
+- **AWS GuardDuty**: Detects unusual API requests.
+
+## Rollback Strategy
+1. **Infrastructure Rollback**: Run `terraform destroy` and redeploy previous Terraform version.
+2. **Application Rollback**: Use Kubernetes rollback:
+   ```bash
+   kubectl rollout undo deployment genome-service
+
+
 
