@@ -43,16 +43,15 @@ GitHub Actions automates deployments to AWS.
    cd terraform
 
 Open Terminal and Deploy Terraform
-terraform init
-terraform plan
-terraform apply -auto-approve
+  terraform init
+  terraform plan
+  terraform apply -auto-approve
 
 Deploy Microservices to Kubernetes
-
-aws eks update-kubeconfig --name genome-cluster --region us-east-1
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
-kubectl apply -f k8s/ingress.yaml
+  aws eks update-kubeconfig --name genome-cluster --region us-east-1
+  kubectl apply -f k8s/deployment.yaml
+  kubectl apply -f k8s/service.yaml
+  kubectl apply -f k8s/ingress.yaml
 
 
 
