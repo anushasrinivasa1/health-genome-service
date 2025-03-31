@@ -1,4 +1,4 @@
- name: Deploy to AWS EKS
+name: Deploy to AWS EKS
 
 on:
   push:
@@ -15,12 +15,22 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - name: Terraform Init
+      - name: Terraform Init & Apply
         run: |
           cd terraform
           terraform init
-
-      - name: Terraform Apply
-        run: |
-          cd terraform
           terraform apply -auto-approve
+
+      - name: Build & Push Docker Image
+        run: |
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com
+          docker build -t genome-service .
+          docker tag genome-service:latest <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/genome-service:latest
+          docker push <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/genome-service:latest
+
+      - name: Deploy to Kubernetes
+        run: |
+          aws eks update-kubeconfig --name genome-cluster --region us-east-1
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
+          kubectl apply -f k8s/ingress.yamlapprove
